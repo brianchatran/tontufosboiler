@@ -62,14 +62,16 @@ public class CharlyGarciaEntity extends PathAwareEntity {
                 this.setStackInHand(Hand.MAIN_HAND, keyboard);
 
                 heldItem.decrement(1);
-                //aqui gemeni
+                player.setStackInHand(hand, heldItem);
+                player.getInventory().markDirty();
                 pianoDado = true;
                 Tontufos2.LOGGER.info("Charly recibió el teclado.");
-                return ActionResult.SUCCESS;
+                return ActionResult.FAIL;
+
             }
 
             // 2. Si Charly ya tiene el piano → diálogo secundario SIEMPRE
-            if (pianoDado) {
+            if (pianoDado && player.getMainHandStack().getItem() != Registries.ITEM.get(new Identifier("evenmoreinstruments", "keyboard"))) {
                 CharlyDialogueHandler.startCharlyDialogue(serverPlayer, this, CHARLY_SECOND);
                 Tontufos2.LOGGER.info("Inicia diálogo secundario con Charly.");
                 return ActionResult.SUCCESS;

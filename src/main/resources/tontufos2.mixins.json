@@ -2,10 +2,10 @@
 	"required": true,
 	"package": "com.tontufos2.mixin",
 	"compatibilityLevel": "JAVA_17",
-	"client": [
-		"HeldItemRendererMixin" ],
+	"mixins": [
+		"ExampleMixin"
+	],
 	"injectors": {
 		"defaultRequire": 1
 	}
-
 }
