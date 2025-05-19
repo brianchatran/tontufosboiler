@@ -1,0 +1,250 @@
+{
+
+  "states": {
+
+    "start": {
+
+      "text": "Eh! Gracias loco justo quería saber si había uno de esos acá\n¿Te pinta escuchar algunos de mis temas?",
+
+      "choices": [
+
+        {
+
+          "text": "¿Tenés discos con vos?",
+
+          "next": "quiero_discos"
+
+        },
+
+        {
+
+          "text": "Nono, no me interesa",
+
+          "next": "no_interesa"
+
+        }
+
+      ],
+
+      "illustrations": ["discussion"]
+
+    },
+
+    "quiero_discos": {
+
+      "text": "Buenísimo, ¿tenés 10 esmeraldas?",
+
+      "choices": [
+
+        {
+
+          "text": "Sisi, acá tenés",
+
+          "next": "tradeo_discos",
+
+          "only_if": {
+
+            "predicate": "tontufos2:has_ten_emeralds_in_inventory",
+
+            "when_unavailable": {
+
+              "display": "grayed_out",
+
+              "message": "Necesitás tener al menos 10 esmeraldas para tradear."
+
+            }
+
+          }
+
+        }
+
+      ],
+
+      "illustrations": ["discussion2"]
+
+    },
+
+    "tradeo_discos": {
+
+      "text": "*Charly saca una pila de discos*\nElegí el que más te guste, loco.",
+
+      "action": {
+
+        "type": "blabber:command",
+
+        "value": "/charly_trade_discs"
+
+      },
+
+      "choices": [
+
+        {
+
+          "text": "Gracias Charly!",
+
+          "next": "end"
+
+        }
+
+      ],
+
+      "illustrations": ["discussion"]
+
+    },
+
+    "no_interesa": {
+
+      "text": "Vos no sos lind@",
+
+      "choices": [ {
+
+        "text": "Gracias Charly!",
+
+        "next": "end"
+
+      }],
+
+      "illustrations": ["discussion2"]
+
+    },
+
+    "end": {
+
+      "text": "¡Nos vemos, maestro!",
+
+      "type": "end_dialogue",
+
+      "choices": []
+
+    }
+
+  },
+
+  "layout": {
+
+    "type": "blabber:rpg"
+
+  },
+
+  "unskippable": false,
+
+  "illustrations": {
+
+    "discussion": [
+
+      {
+
+        "type": "blabber:entity",
+
+        "entity": "@interlocutor",
+
+        "anchor": "spot_1",
+
+        "x1": -110,
+
+        "y1": -100,
+
+        "x2": -10,
+
+        "y2": 0,
+
+        "size": 80,
+
+        "y_offset": 0.5,
+
+        "stare_at_x": 50,
+
+        "stare_at_y": 0
+
+      },
+
+      {
+
+        "type": "blabber:entity",
+
+        "entity": "@s",
+
+        "anchor": "spot_1",
+
+        "x1": -10,
+
+        "y1": -100,
+
+        "x2": 90,
+
+        "y2": 0,
+
+        "size": 80,
+
+        "y_offset": 0.5,
+
+        "stare_at_x": -50,
+
+        "stare_at_y": 0
+
+      }
+
+    ],
+
+    "discussion2": [
+
+      {
+
+        "type": "blabber:entity",
+
+        "entity": "@s",
+
+        "anchor": "spot_1",
+
+        "x1": -10,
+
+        "y1": -100,
+
+        "x2": 90,
+
+        "y2": 0,
+
+        "size": 80,
+
+        "y_offset": 0.5,
+
+        "stare_at_x": -50,
+
+        "stare_at_y": 0
+
+      },
+
+      {
+
+        "type": "blabber:entity",
+
+        "entity": "@interlocutor",
+
+        "anchor": "spot_1",
+
+        "x1": -10,
+
+        "y1": -100,
+
+        "x2": 90,
+
+        "y2": 0,
+
+        "size": 80,
+
+        "y_offset": 0.5,
+
+        "stare_at_x": -50,
+
+        "stare_at_y": 0
+
+      }
+
+    ]
+
+  },
+
+  "start_at": "start"
+
+}
+

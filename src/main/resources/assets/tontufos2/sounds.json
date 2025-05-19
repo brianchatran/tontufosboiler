@@ -1,0 +1,10 @@
+{
+  "charly_song": {
+    "sounds": [
+      {
+        "name": "tontufos2:music/charly_song",
+        "stream": true
+      }
+    ]
+  }
+}

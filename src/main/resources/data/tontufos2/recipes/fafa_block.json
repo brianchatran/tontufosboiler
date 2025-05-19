@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FFF",
+    "FFF",
+    "FFF"
+  ],
+  "key": {
+    "F": {
+      "item": "tontufos2:fafa"
+    }
+  },
+  "result": {
+    "item": "tontufos2:fafa_block",
+    "count": 1
+  }
+}

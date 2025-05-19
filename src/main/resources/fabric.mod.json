@@ -1,0 +1,46 @@
+{
+	"schemaVersion": 1,
+	"id": "tontufos2",
+	"version": "1.0.0",
+	"name": "Tontufos2",
+	"description": "Mod creado para la Serie de Twitch TontufosSMP 2",
+	"authors": [
+		"Brianchatran",
+		"Maatt_MC"
+	],
+	"contact": {
+		"homepage": "https://twitch.tv/brianchatran"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/tontufos2/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.tontufos2.Tontufos2"
+		],
+		"client": [
+			"com.tontufos2.Tontufos2Client"
+		],
+		"fabric-datagen": [
+			"com.tontufos2.Tontufos2DataGenerator"
+		]
+	},
+	"mixins": [
+		"tontufos2.mixins.json",
+		{
+			"config": "tontufos2.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.13",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*",
+		"blabber": "1.6.1-mc1.20.1",
+		"evenmoreinstruments": ">=6.0.0"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

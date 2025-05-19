@@ -1,0 +1,14 @@
+{
+  "type": "tontufos2:add_item",
+  "conditions": [
+    {
+      "condition": "minecraft:entity_properties",
+      "entity": "this",
+      "predicate": {
+        "type": "minecraft:skeleton"
+      }
+    }
+  ],
+  "item": "tontufos2:fafa",
+  "chance": 0.2
+}

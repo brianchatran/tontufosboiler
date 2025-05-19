@@ -1,0 +1,9 @@
+{
+  "type": "tontufos2:add_item",
+  "loot_table": "minecraft:chests/ruined_portal",
+  "item": "tontufos2:fafa",
+  "count": {
+    "min": 1,
+    "max": 2
+  }
+}

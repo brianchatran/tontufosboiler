@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tontufos2:fafa_block"
+    }
+  ],
+  "result": {
+    "item": "tontufos2:fafa",
+    "count": 9
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "item.tontufos2.fafa": "Fafa",
+  "itemGroup.tontufos2.tontufos": "Tontufos",
+  "block.tontufos2.fafa_block": "Bloque de Fafa",
+  "item.tontufos2.fafa.tooltip": "Un polvillo blanco de origen dudoso... El abuso tiene consecuencias.",
+  "death.attack.fafaOverdose": "%1$s ha muerto por sobredosis de fafa.",
+  "entity.tontufos2.charly_garcia": "Charly Garcia",
+  "item.tontufos2.charly_garcia_spawn_egg": "Charly Garcia Spawn Egg",
+  "item.tontufos2.charly_music_disc": "Clics Modernos",
+  "item.tontufos2.charly_music_disc.desc": "Charly García - Nos Siguen Pegando Abajo",
+  "advancement.tontufos2.give_piano_to_charly.title": "La lógica del escorpión",
+  "advancement.tontufos2.give_piano_to_charly.desc": "'Lógica' gritó la rana moribunda",
+  "advancement.tontufos2.root.title": "Logros de Tontufos2",
+  "advancement.tontufos2.root.desc": "¡Explora los secretos de Tontufos2!"
+}

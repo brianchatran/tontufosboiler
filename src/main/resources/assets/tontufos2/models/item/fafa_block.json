@@ -1,0 +1,6 @@
+{
+  "parent": "tontufos2:block/fafa_block",
+  "textures": {
+    "layer0": "tontufos2:block/fafa_block"
+  }
+}

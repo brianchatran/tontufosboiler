@@ -1,0 +1,25 @@
+{
+
+  "parent": "tontufos2:root",
+  "display": {
+    "icon": {
+      "item": "evenmoreinstruments:keyboard"
+    },
+    "title": {
+      "translate": "advancement.tontufos2.give_piano_to_charly.title"
+    },
+    "description": {
+      "translate": "advancement.tontufos2.give_piano_to_charly.desc"
+    },
+    "background_texture": "minecraft:textures/block/iron_block",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "piano_given": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

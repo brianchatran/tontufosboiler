@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " F ",
+    "FDF",
+    " F "
+  ],
+  "key": {
+    "F": { "item": "tontufos2:fafa" },
+    "D": {
+      "tag": "minecraft:music_discs"
+    }
+  },
+  "result": {
+    "item": "tontufos2:charly_music_disc"
+  }
+}

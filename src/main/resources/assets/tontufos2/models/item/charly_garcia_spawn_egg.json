@@ -1,0 +1,8 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "tontufos2:item/charly_garcia_spawn_egg",
+    "layer1": "tontufos2:item/charly_garcia_spawn_egg"
+
+  }
+}

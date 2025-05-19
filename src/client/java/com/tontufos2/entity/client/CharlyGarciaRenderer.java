@@ -1,0 +1,27 @@
+package com.tontufos2.entity.client;
+
+import com.tontufos2.Tontufos2;
+import com.tontufos2.entity.custom.CharlyGarciaEntity;
+import net.minecraft.client.render.entity.EntityRendererFactory;
+import net.minecraft.client.render.entity.LivingEntityRenderer;
+import net.minecraft.client.render.entity.feature.HeldItemFeatureRenderer;
+import net.minecraft.client.render.entity.model.EntityModelLayers;
+import net.minecraft.client.render.entity.model.PlayerEntityModel;
+import net.minecraft.util.Identifier;
+
+public class CharlyGarciaRenderer extends LivingEntityRenderer<CharlyGarciaEntity, PlayerEntityModel<CharlyGarciaEntity>> {
+
+    private static final Identifier TEXTURE = new Identifier(Tontufos2.MOD_ID, "textures/entity/charly_garcia.png");
+
+    public CharlyGarciaRenderer(EntityRendererFactory.Context context) {
+        super(context, new PlayerEntityModel<>(context.getPart(EntityModelLayers.PLAYER), false), 0.5f);
+
+        // 🔥 ESTO ES LO QUE FALTABA: renderiza ítems en la mano
+        this.addFeature(new HeldItemFeatureRenderer<>(this, context.getHeldItemRenderer()));
+    }
+
+    @Override
+    public Identifier getTexture(CharlyGarciaEntity entity) {
+        return TEXTURE;
+    }
+}

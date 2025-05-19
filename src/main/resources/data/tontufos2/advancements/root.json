@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:music_disc_pigstep"
+
+    },
+    "title": {
+      "translate": "advancement.tontufos2.root.title"
+    },
+    "description": {
+      "translate": "advancement.tontufos2.root.desc"
+    },
+    "background": "tontufos2:fondo.png",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "frame": "task"
+  },
+  "criteria": {
+    "trigger": {
+      "trigger": "minecraft:tick"
+    }
+  }
+}

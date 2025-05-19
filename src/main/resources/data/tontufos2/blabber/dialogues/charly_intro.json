@@ -1,0 +1,253 @@
+{
+  "states": {
+    "start": {
+      "text": "¿Dónde carajo estoy? Esto no es Buenos Aires, ni el Luna",
+      "choices": [
+        {
+          "text": "Charly, estás en el Tontufos SMP2, un server de Minecraft.",
+          "next": "que_es_eso"
+        },
+        {
+          "text": "Vos tranquilo, maestro. Es un jueguito de cubitos.",
+          "next": "que_es_eso"
+        }
+      ],"illustrations": ["discussion"]
+    },
+    "que_es_eso": {
+      "text": "¿Cubitos? ¿Me hicieron de Lego? Esto es una pesadilla informática.",
+      "choices": [
+        {
+          "text": "No, es un homenaje. Te hicimos un mod para jugar con vos.",
+          "next": "reaccion_mod"
+        },
+        {
+          "text": "Podés caminar, hablar y dar fafa si querés.",
+          "next": "reaccion_mod"
+        }
+      ],"illustrations": ["discussion2"]
+    },
+    "reaccion_mod": {
+      "text": "¿Un mod? O sea que soy un hackeo. Eso me gusta. Siempre fui un virus en la cultura.",
+      "choices": [
+        {
+          "text": "¿Querés probar a romper bloques?",
+          "next": "romper_bloques"
+        },
+        {
+          "text": "También podés escuchar tu música en jukeboxes.",
+          "next": "jukebox"
+        },
+        {
+          "text": "Te puedo dar fafa, si traés encima.",
+          "next": "give_fafa",
+          "only_if": {
+            "predicate": "tontufos2:has_fafa",
+            "when_unavailable": {
+              "display": "grayed_out",
+              "message": "Necesitás tener fafa en tu inventario para darle a Charly."
+            }
+          }
+        }
+      ],"illustrations": ["discussion"]
+    },
+    "romper_bloques": {
+      "text": "Romper cosas siempre fue lo mío. ¿Esto también tiene backstage?",
+      "choices": [
+        {
+          "text": "Bueno, tenemos dungeons y aldeas. ¿Querés conocer una?",
+          "next": "visitar_lugar"
+        },
+        {
+          "text": "O podemos ir a explotar Creepers, te va a gustar.",
+          "next": "creepers"
+        }
+      ],"illustrations": ["discussion2"]
+    },
+    "jukebox": {
+      "text": "Si suena 'Nos siguen pegando abajo' en un server de tontufos, me retiro.",
+      "choices": [
+        {
+          "text": "Tranqui que ya la agregamos.",
+          "next": "reaccion_musica"
+        },
+        {
+          "text": "También agregamos 'Nos siguen pegando abajo'.",
+          "next": "reaccion_musica"
+        }
+      ],"illustrations": ["discussion2"]
+    },
+    "give_fafa": {
+      "action": {
+        "type": "blabber:command",
+        "value": "/clear @s tontufos2:fafa 1"
+      },
+      "text": "Tomá maestro, cuidate eh...",
+      "choices": [
+        {
+          "text": "Seguimos jugando.",
+          "next": "end"
+        }
+      ],"illustrations": ["discussion2"]
+    },
+    "reaccion_musica": {
+      "text": "Ahí está. La música es lo único real en este mundo de bits.",
+      "choices": [
+        {
+          "text": "Charly, ¿te gustan los shaders? Así se ve más lindo.",
+          "next": "shaders"
+        },
+        {
+          "text": "¿Querés que te enseñe a minar diamantes?",
+          "next": "diamantes"
+        }
+      ],"illustrations": ["discussion"]
+    },
+    "shaders": {
+      "text": "Todo lindo, pero no me pongas ray tracing. La vida ya es lo suficientemente distorsionada.",
+      "choices": [
+        {
+          "text": "Ok, sin shaders. Más puro.",
+          "next": "visitar_lugar"
+        },
+        {
+          "text": "Como el vinilo, sin compresión.",
+          "next": "visitar_lugar"
+        }
+      ],"illustrations": ["discussion2"]
+    },
+    "diamantes": {
+      "text": "A mí dame acetato y buena compañía. Los diamantes son para las joyerías.",
+      "choices": [
+        {
+          "text": "Entonces vamos a buscar aldeanos, hacen buenos trades.",
+          "next": "aldeanos"
+        },
+        {
+          "text": "O vamos a romper portales arruinados, eso sí te va a gustar.",
+          "next": "ruined_portal"
+        }
+      ],"illustrations": ["discussion2"]
+    },
+    "aldeanos": {
+      "text": "¿Y esos te venden cosas? Mirá vos, la economía de cubitos es igual de chanta que la real.",
+      "choices": [
+        {
+          "text": "Podés robarles esmeraldas si sos pillo.",
+          "next": "end"
+        },
+        {
+          "text": "O hacer trueque, como en los 80.",
+          "next": "end"
+        }
+      ],"illustrations": ["discussion"]
+    },
+    "ruined_portal": {
+      "text": "Eso suena a arte. Me gusta la decadencia estética.",
+      "choices": [
+        {
+          "text": "Te va a encantar entonces el Nether.",
+          "next": "end"
+        },
+        {
+          "text": "Podemos decorar uno con colores de Clics Modernos.",
+          "next": "end"
+        }
+      ],"illustrations": ["discussion"]
+    },
+    "creepers": {
+      "text": "Si explotan, que sea al ritmo de 'Inconsciente Colectivo'.",
+      "choices": [
+        {
+          "text": "Me gusta tu estilo, Charly.",
+          "next": "end"
+        },
+        {
+          "text": "Vamos a hacer arte con los Creepers.",
+          "next": "end"
+        }
+      ],"illustrations": ["discussion"]
+    },
+    "visitar_lugar": {
+      "text": "Llevame a donde la gente juega. Yo quiero ver esos tontufos en acción.",
+      "choices": [
+        {
+          "text": "Vamos a la aldea más cercana.",
+          "next": "end"
+        },
+        {
+          "text": "O si querés, te llevo a una dungeon.",
+          "next": "end"
+        }
+      ],"illustrations": ["discussion"]
+    },
+    "end": {
+      "text": "Bueno, vamos. Pero recordá: 'La música es del aire', y ahora también de los cubitos.",
+      "type": "end_dialogue",
+      "choices": []
+    }
+  },
+  "layout": {
+    "type": "blabber:rpg"
+  },
+  "unskippable": false,
+  "illustrations": {
+    "discussion": [
+      {
+        "type": "blabber:entity",
+        "entity": "@interlocutor",
+        "anchor": "spot_1",
+        "x1": -110,
+        "y1": -100,
+        "x2": -10,
+        "y2": 0,
+        "size": 80,
+        "y_offset": 0.5,
+        "stare_at_x": 50,
+        "stare_at_y": 0
+      },
+      {
+        "type": "blabber:entity",
+        "entity": "@s",
+        "anchor": "spot_1",
+        "x1": -10,
+        "y1": -100,
+        "x2": 90,
+        "y2": 0,
+        "size": 80,
+        "y_offset": 0.5,
+        "stare_at_x": -50,
+        "stare_at_y": 0
+      }
+    ] ,
+    "discussion2": [
+      {
+        "type": "blabber:entity",
+        "entity": "@s",
+        "anchor": "spot_1",
+        "x1": -110,
+        "y1": -100,
+        "x2": -10,
+        "y2": 0,
+        "size": 80,
+        "y_offset": 0.5,
+        "stare_at_x": 50,
+        "stare_at_y": 0
+      },
+      {
+        "type": "blabber:entity",
+        "entity": "@interlocutor",
+        "anchor": "spot_1",
+        "x1": -10,
+        "y1": -100,
+        "x2": 90,
+        "y2": 0,
+        "size": 80,
+        "y_offset": 0.5,
+        "stare_at_x": -50,
+        "stare_at_y": 0
+      }
+    ]
+
+  },
+  "start_at": "start"
+}

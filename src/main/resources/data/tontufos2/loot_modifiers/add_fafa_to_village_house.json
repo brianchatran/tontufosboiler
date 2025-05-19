@@ -1,0 +1,9 @@
+{
+  "type": "tontufos2:add_item",
+  "loot_table": "minecraft:chests/village/village_house",
+  "item": "tontufos2:fafa",
+  "count": {
+    "min": 1,
+    "max": 10
+  }
+}
