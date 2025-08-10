@@ -1,0 +1,25 @@
+package com.tontufos2.blabber;
+
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.text.Text;
+
+import net.minecraft.util.Identifier;
+
+public class ConsumeFafaAction implements DialogueAction {
+    public static final Identifier ID = new Identifier("tontufos2", "consume_fafa");
+
+    @Override
+    public void execute(DialogueContext context) {
+        if (context.getPlayer() instanceof ServerPlayerEntity player) {
+            for (ItemStack stack : player.getInventory().main) {
+                if (!stack.isEmpty() && stack.getItem().getTranslationKey().contains("fafa")) {
+                    stack.decrement(1);
+                    player.sendMessage(Text.literal("Le diste fafa a Charly."), false);
+                    return;
+                }
+            }
+            player.sendMessage(Text.literal("No tenés más fafa en el inventario."), false);
+        }
+    }
+}

@@ -1,0 +1,26 @@
+package com.tontufos2.screen;
+
+import com.tontufos2.entity.custom.CharlyGarciaEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.screen.MerchantScreenHandler;
+import net.minecraft.village.Merchant;
+
+public class CharlyScreenHandler extends MerchantScreenHandler {
+    public CharlyScreenHandler(int syncId, PlayerInventory playerInventory, PacketByteBuf buf) {
+        super(syncId, playerInventory);
+
+        int entityId = buf.readVarInt();
+        var entity = playerInventory.player.getWorld().getEntityById(entityId);
+
+        if (entity instanceof CharlyGarciaEntity charly) {
+            charly.fillRecipes();
+            charly.setCustomer(playerInventory.player);
+            this.merchant = charly; // <-- usa el protected merchant (ojo si da error, es obfuscated: field_75180)
+            this.sendContentUpdates();
+        } else {
+            throw new IllegalStateException("No se encontró a Charly con ID: " + entityId);
+        }
+    }
+}

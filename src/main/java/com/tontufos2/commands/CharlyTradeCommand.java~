@@ -1,0 +1,68 @@
+package com.tontufos2.commands;
+
+import com.mojang.brigadier.context.CommandContext;
+import com.tontufos2.entity.custom.CharlyGarciaEntity;
+import com.tontufos2.screen.ModScreenHandlers;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.network.PacketByteBuf;
+
+import net.minecraft.server.command.CommandManager;
+import net.minecraft.server.command.ServerCommandSource;
+import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
+
+import java.util.List;
+
+public class CharlyTradeCommand {
+
+    public static void register() {
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(
+                    CommandManager.literal("charly_trade_discs")
+                            .requires(source -> source.hasPermissionLevel(2))
+                            .executes(CharlyTradeCommand::openTradeGui)
+            );
+        });
+    }
+
+    private static int openTradeGui(CommandContext<ServerCommandSource> context) {
+        ServerPlayerEntity player = context.getSource().getPlayer();
+        if (player == null) return 0;
+
+        List<CharlyGarciaEntity> charlys = player.getWorld().getEntitiesByClass(
+                CharlyGarciaEntity.class,
+                player.getBoundingBox().expand(10.0),
+                entity -> true
+        );
+
+        if (charlys.isEmpty()) {
+            player.sendMessage(Text.literal("No hay un Charly cerca para tradear."), false);
+            return 0;
+        }
+
+        CharlyGarciaEntity charly = charlys.get(0);
+
+        player.openHandledScreen(new ExtendedScreenHandlerFactory() {
+            @Override
+            public void writeScreenOpeningData(ServerPlayerEntity player, PacketByteBuf buf) {
+                buf.writeVarInt(charly.getId());
+            }
+
+            @Override
+            public Text getDisplayName() {
+                return Text.literal("Charly García");
+            }
+
+            @Override
+            public net.minecraft.screen.ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity playerEntity) {
+                return ModScreenHandlers.CHARLY_SCREEN_HANDLER.create(syncId, inv, PacketByteBufs.create());
+            }
+        });
+
+        return 1;
+    }
+}

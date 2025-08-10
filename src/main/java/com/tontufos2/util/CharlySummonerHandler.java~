@@ -1,0 +1,104 @@
+package com.tontufos2.util;
+import java.util.HashSet;
+import java.util.Set;
+import com.tontufos2.Tontufos2;
+import com.tontufos2.blocks.ModBlocks;
+import com.tontufos2.entity.ModEntities;
+import com.tontufos2.entity.custom.CharlyGarciaEntity;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.minecraft.block.Blocks;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+public class CharlySummonerHandler {
+    private static final Set<BlockPos> piramidesUsadas = new HashSet<>();
+
+    public static void registerStructureCheck() {
+        ServerTickEvents.END_WORLD_TICK.register(world -> {
+            if (!(world instanceof ServerWorld)) return;
+            ServerWorld serverWorld = (ServerWorld) world;
+
+            serverWorld.getPlayers().forEach(player -> {
+                BlockPos playerPos = player.getBlockPos();
+
+                BlockPos.iterate(playerPos.add(-5, -5, -5), playerPos.add(5, 5, 5)).forEach(pos -> {
+                    if (isCharlyPyramidAt(serverWorld, pos) && !piramidesUsadas.contains(pos)) {
+                        spawnCharlyWithEffects(serverWorld, pos.up(1)); // Spawnea 1 bloque arriba de la antorcha
+                        piramidesUsadas.add(pos.toImmutable()); // Marca como ya usada
+                    }
+                });
+            });
+        });
+    }
+
+    private static boolean isCharlyPyramidAt(World world, BlockPos torchPos) {
+        // Verifica la antorcha arriba
+        if (!world.getBlockState(torchPos).isOf(Blocks.TORCH)) {
+            return false;
+        }
+
+        // Base de la pirámide es 3 bloques abajo
+        BlockPos basePos = torchPos.down(3);
+
+        for (int y = 0; y < 3; y++) {
+            int offset = 2 - y; // ✅ 2 (base grande) hasta 0 (pico pequeño)
+            for (int x = -offset; x <= offset; x++) {
+                for (int z = -offset; z <= offset; z++) {
+                    BlockPos currentPos = basePos.up(y);  // ✅ Hacia arriba desde base
+                    currentPos = currentPos.add(x, 0, z);
+                    if (!world.getBlockState(currentPos).isOf(ModBlocks.FAFA_BLOCK)) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
+
+    private static void spawnCharlyWithEffects(ServerWorld world, BlockPos torchPos) {
+        // Spawn Charly García 1 bloque encima de la antorcha
+        CharlyGarciaEntity charly = ModEntities.CHARLY_GARCIA.create(world);
+        if (charly != null) {
+            charly.refreshPositionAndAngles(torchPos.up(), 0.0f, 0.0f);
+            world.spawnEntity(charly);
+
+            // Sonido al spawnear
+            world.playSound(null, torchPos, SoundEvents.ENTITY_WITHER_SPAWN, SoundCategory.BLOCKS, 1.0f, 1.0f);
+
+            // Partículas
+            world.spawnParticles(ParticleTypes.CLOUD, torchPos.getX() + 0.5, torchPos.getY(), torchPos.getZ() + 0.5, 20, 0.3, 0.3, 0.3, 0.01);
+            world.spawnParticles(ParticleTypes.HAPPY_VILLAGER, torchPos.getX() + 0.5, torchPos.getY() + 1, torchPos.getZ() + 0.5, 10, 0.2, 0.5, 0.2, 0.02);
+
+            // 🔥 Borra la pirámide
+            destroyPyramid(world, torchPos);
+
+            Tontufos2.LOGGER.info("Charly García ha sido invocado en " + torchPos);
+        }
+    }
+    private static void destroyPyramid(ServerWorld world, BlockPos torchPos) {
+        // Borra la antorcha
+        world.setBlockState(torchPos, Blocks.AIR.getDefaultState());
+
+        // Base 3x3 a 1x1 desde abajo hacia arriba
+        BlockPos basePos = torchPos.down(3);
+
+        for (int y = 0; y < 3; y++) {
+            int offset = 2 - y;
+            for (int x = -offset; x <= offset; x++) {
+                for (int z = -offset; z <= offset; z++) {
+                    BlockPos targetPos = basePos.up(y).add(x, 0, z);
+                    if (world.getBlockState(targetPos).isOf(ModBlocks.FAFA_BLOCK)) {
+                        world.setBlockState(targetPos, Blocks.AIR.getDefaultState());
+                    }
+                }
+            }
+        }
+    }
+
+}
