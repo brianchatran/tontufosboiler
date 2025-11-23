@@ -152,7 +152,7 @@ System.err.println("Errores");
 
 Si tienes dudas sobre el código:
 - **Creadores:** Brianchatran, Maatt_MC
-- **Twitch:** https://twitch.tv/brianchatran
+
 - **Propósito:** Mod para TontufosSMP 2
 
 ## 🎯 OBJETIVOS DEL MOD
