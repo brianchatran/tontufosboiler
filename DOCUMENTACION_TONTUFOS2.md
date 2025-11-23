@@ -342,7 +342,6 @@ FFFFFFF (7x7 fafa blocks)
 ## 📞 CONTACTO Y SOPORTE
 
 **Creadores:** Brianchatran, Maatt_MC  
-**Twitch:** https://twitch.tv/brianchatran  
 **Licencia:** CC0-1.0
 
 ---
