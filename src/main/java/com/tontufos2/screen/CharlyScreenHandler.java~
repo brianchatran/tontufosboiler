@@ -17,7 +17,7 @@ public class CharlyScreenHandler extends MerchantScreenHandler {
         if (entity instanceof CharlyGarciaEntity charly) {
             charly.fillRecipes();
             charly.setCustomer(playerInventory.player);
-            this.merchant = charly; // <-- usa el protected merchant (ojo si da error, es obfuscated: field_75180)
+            this.merchant = charly; // <-- usa el protected merchant 
             this.sendContentUpdates();
         } else {
             throw new IllegalStateException("No se encontró a Charly con ID: " + entityId);
